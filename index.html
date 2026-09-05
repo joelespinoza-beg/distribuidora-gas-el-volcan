@@ -3,13 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distribuidora De Gas</title>
+    <title>Gas El Volcán - Distribución de Gas Licuado en Chillán</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/funciones.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <div class="logo">
+            <h1>Gas El Volcán</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo y Pedidos</a></li>
+                <li><a href="#seguimiento">Seguimiento en Vivo</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <a href="#" class="btn-login">Iniciar Sesión</a>
+        </nav>
+    </header>
 
-    
+    <main>
+        <section class="hero">
+            <h2>El gas para tu hogar y negocio, rápido y sin llamadas</h2>
+            <p>Distribución de cilindros a domicilio en Chillán y comunas aledañas. Realiza tu pedido en segundos o rastrea a tu repartidor en tiempo real.</p>
+            <div class="hero-actions">
+                <a href="catalogo.html" class="btn-primary">Pedir Gas en Línea</a>
+                <a href="#seguimiento" class="btn-secondary">Rastrear mi Pedido</a>
+            </div>
+        </section>
+
+        <section id="seguimiento" class="tracking">
+            <h2>¿Ya realizaste un pedido?</h2>
+            <p>Ingresa tu número de pedido o teléfono para ver el estado del despacho:</p>
+            <form id="form-seguimiento" action="#" onsubmit="event.preventDefault();">
+                <input type="text" id="input-codigo" name="codigo" placeholder="Ej: PED-1042 o +56912345678" required>
+                <button type="submit">Consultar Estado</button>
+            </form>
+            <div id="resultado-seguimiento" style="margin-top: 15px;"></div>
+        </section>
+
+        <section class="preview-catalogo">
+            <div class="preview-header">
+                <h2>Nuestros Formatos Más Populares</h2>
+                <p>Encuentra el cilindro ideal para tu hogar o negocio. Tenemos formatos desde 5 kg hasta 45 kg.</p>
+            </div>
+            
+            <div class="preview-cards">
+                <div class="card">
+                    <div class="card-icon">🔥</div>
+                    <h3>Cilindro 11 kg</h3>
+                    <p class="precio">$20.500</p>
+                    <p class="desc">Perfecto para calefacción y cocina diaria.</p>
+                </div>
+                
+                <div class="card destacada">
+                    <div class="card-icon">⭐</div>
+                    <h3>Cilindro 15 kg</h3>
+                    <p class="precio">$26.900</p>
+                    <p class="desc">El preferido por las familias en Chillán. Rendimiento y duración óptima.</p>
+                </div>
+            </div>
+
+            <div class="preview-action">
+                <a href="catalogo.html" class="btn-catalogo">Ver Catálogo Completo</a>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <h2>¿Por qué pedir en Gas El Volcán?</h2>
+            <div class="benefits-grid">
+                <article>
+                    <h3>Seguimiento en Mapa</h3>
+                    <p>Visualiza en tiempo real la ruta del camión repartidor hacia tu domicilio.</p>
+                </article>
+                <article>
+                    <h3>Sin Esperas Telefónicas</h3>
+                    <p>Pide directamente desde tu teléfono o computador sin depender de líneas ocupadas.</p>
+                </article>
+                <article>
+                    <h3>Pago Seguro en Entrega</h3>
+                    <p>Paga en efectivo o transferencia directamente al recibir tu cilindro.</p>
+                </article>
+                <article>
+                    <h3>Cobertura Local</h3>
+                    <p>Atención directa en Chillán y zonas urbanas aledañas con flota propia.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="coverage">
+            <h2>Zona de Cobertura y Despacho</h2>
+            <p>Atendemos de lunes a domingo en los siguientes sectores de la Región de Ñuble:</p>
+            <ul>
+                <li>Chillán Centro y Zonas Residenciales</li>
+                <li>Chillán Viejo</li>
+                <li>Caminos a Coihueco y Pinto (Sectores urbanos)</li>
+            </ul>
+        </section>
+
+        <section class="faq">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <h3>¿Cuánto tarda en llegar mi pedido?</h3>
+                <p>El tiempo promedio de entrega es de 30 a 60 minutos según el tráfico y el sector de Chillán.</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿Puedo cambiar mi envase de otra marca?</h3>
+                <p>Sí, aceptamos envases en buen estado de las principales marcas del mercado sin costo adicional.</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿Cómo sé si mi pedido fue asignado?</h3>
+                <p>Puedes revisar el estado ingresando a la sección de seguimiento con tu número de teléfono.</p>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="margin-bottom: 15px;">¿Tienes más dudas o consultas específicas?</p>
+                <a href="contacto.html" class="btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: #333; color: #fff; text-decoration: none; border-radius: 5px;">Ir a Contacto</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-internal">
+            <h3>Acceso al Personal Interno</h3>
+            <p>Si eres parte del equipo de Gas El Volcán, ingresa a tu módulo de trabajo:</p>
+            <nav>
+                <a href="#">Portal Operadora / Despacho</a>
+                <a href="#">Portal Repartidores</a>
+                <a href="#">Administración</a>
+            </nav>
+        </div>
+        
+        <div class="footer-info">
+            <p><strong>Distribuidora de Gas El Volcán</strong></p>
+            <p>Chillán, Región de Ñuble, Chile</p>
+            <p>Teléfono: (42) 222 3344 | WhatsApp: +56 9 8765 4321</p>
+            <p>Horarios: Lunes a Sábado 08:00 - 20:00 hrs | Domingos 09:00 - 15:00 hrs</p>
+            <p>© 2026 Distribuidora de Gas El Volcán. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
