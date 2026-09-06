@@ -1,5 +1,6 @@
 const formularioLogin = document.getElementById("form-login");
 
+if (formularioLogin){
 formularioLogin.addEventListener("submit", function (evento){
     evento.preventDefault();
     
@@ -20,7 +21,16 @@ formularioLogin.addEventListener("submit", function (evento){
         mensaje.textContent = "Ingrese un correo válido, por ejemplo nombre@dominio.com";
         return;
     }
+ 
+    if (rol === "administrador"){
+        window.location.href =  "empleados.html";
+    } else if (rol === "operadora") {
+        window.location.href = "pedidos.html";
+    } else if (rol === "repartidor"){
+        window.location.href = "entregas.html";
+    } else {
+        mensaje.textContent = "Selecciona un rol válido.";
+    }
 
-    mensaje.textContent = "Datos completos. Acceso autorizado para: " + rol;
 });
-
+}
