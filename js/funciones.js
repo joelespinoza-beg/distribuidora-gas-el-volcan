@@ -57,20 +57,31 @@ document.addEventListener("click", function (evento) {
         }
     }
 
-    if (accion === "cambiar-estado") {
+if (accion === "cambiar-estado") {
     const fila = boton.closest("tr");
-    const estado = fila.querySelector(".estado-pedido");
+    const estadoPedido = fila.querySelector(".estado-pedido");
+    const estadoEmpleado = fila.querySelector(".estado-empleado");
 
-    if (estado.textContent === "Pendiente"){
-        estado.textContent = "En preparación";
-    } else if (estado.textContent === "En preparación") {
-        estado.textContent = "Asignado";
-    } else if (estado.textContent === "Asignado") {
-        estado.textContent = "En camino";
-    }else if (estado.textContent === "En camino") {
-        estado.textContent = "Entregado"
+    if (estadoPedido) {
+        if (estadoPedido.textContent === "Pendiente") {
+            estadoPedido.textContent = "En preparación";
+        } else if (estadoPedido.textContent === "En preparación") {
+            estadoPedido.textContent = "Asignado";
+        } else if (estadoPedido.textContent === "Asignado") {
+            estadoPedido.textContent = "En camino";
+        } else if (estadoPedido.textContent === "En camino") {
+            estadoPedido.textContent = "Entregado";
+        }
     }
+
+    if (estadoEmpleado) {
+        if (estadoEmpleado.textContent === "Activo") {
+            estadoEmpleado.textContent = "Inactivo";
+        } else {
+            estadoEmpleado.textContent = "Activo";
+        }
     }
+}
 
 
 });
