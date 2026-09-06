@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/funciones.js" defer></script>
+</head>
+<body>
+    <!-- menu de login para redirigir la pagina -->
+    <header>
+        <h1>Acceso al sistema</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Iniciar sesión</h2>
+            <form id="form-login" novalidate>
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" required>
+
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+
+                <label for="rol">Tipo de usuario</label>
+                <select id="rol" name="rol" required> 
+                    <option value="">Seleccione un opción</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="operadora">Operadora/Despachadora</option>
+                    <option value="repartidor">Repartidor</option>
+                </select>
+
+                <button type="submit">Ingresar</button>
+                <p id="mensaje-login"></p>
+
+            </form>
+        </section>
+    </main>
+
+
+        <footer>
+        <div class="footer-info">
+            <p><strong>Distribuidora de Gas El Volcán</strong></p>
+            <p>Chillán, Región de Ñuble, Chile</p>
+            <p>Teléfono: (42) 222 3344 | WhatsApp: +56 9 8765 4321</p>
+            <p>Horarios: Lunes a Sábado 08:00 - 20:00 hrs | Domingos 09:00 - 15:00 hrs</p>
+            <p>© 2026 Distribuidora de Gas El Volcán. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
