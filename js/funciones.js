@@ -81,9 +81,50 @@ if (accion === "cambiar-estado") {
             estadoEmpleado.textContent = "Activo";
         }
     }
-}
+    }
 
+    if (accion === "editar") {
+        const fila = boton.closest("tr");
+        const dialogo = document.getElementById("dialogo-edicion");
+        const telefono = fila.cells[2];
+        const correo = fila.cells[3];
+
+        if (!dialogo) {
+            return;
+        }
+
+        dialogo.dataset.fila = Array.from(fila.parentElement.children).indexOf(fila);
+        document.getElementById("editar-telefono").value = telefono.textContent.trim();
+        document.getElementById("editar-correo").value = correo.textContent.trim();
+        dialogo.showModal();
+    }
 
 });
+
+const formularioEdicion = document.getElementById("form-edicion");
+const dialogoEdicion = document.getElementById("dialogo-edicion");
+const cancelarEdicion = document.getElementById("cancelar-edicion");
+
+if (formularioEdicion && dialogoEdicion) {
+    formularioEdicion.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const fila = document.querySelectorAll("#listado-empleado tbody tr")[dialogoEdicion.dataset.fila];
+        const telefono = document.getElementById("editar-telefono").value.trim();
+        const correo = document.getElementById("editar-correo").value.trim();
+
+        if (fila && telefono !== "" && correo !== "") {
+            fila.cells[2].textContent = telefono;
+            fila.cells[3].textContent = correo;
+            dialogoEdicion.close();
+        }
+    });
+}
+
+if (cancelarEdicion && dialogoEdicion) {
+    cancelarEdicion.addEventListener("click", function () {
+        dialogoEdicion.close();
+    });
+}
 
 
