@@ -34,3 +34,45 @@ formularioLogin.addEventListener("submit", function (evento){
 
 });
 }
+
+document.addEventListener("click", function (evento) {
+    const boton = evento.target.closest("[data-accion]");
+    
+    if (!boton) {
+        return;
+    }
+
+    const accion = boton.dataset.accion;
+
+    if (accion === "en-camino" || accion === "entregado"){
+        const fila = boton.closest("tr");
+        const estado = fila.querySelector(".estado-entrega");
+
+        if (accion === "en-camino"){
+            estado.textContent = "En camino";
+        }
+
+        if (accion === "entregado"){
+            estado.textContent = "Entregado";
+        }
+    }
+
+    if (accion === "cambiar-estado") {
+    const fila = boton.closest("tr");
+    const estado = fila.querySelector(".estado-pedido");
+
+    if (estado.textContent === "Pendiente"){
+        estado.textContent = "En preparación";
+    } else if (estado.textContent === "En preparación") {
+        estado.textContent = "Asignado";
+    } else if (estado.textContent === "Asignado") {
+        estado.textContent = "En camino";
+    }else if (estado.textContent === "En camino") {
+        estado.textContent = "Entregado"
+    }
+    }
+
+
+});
+
+
