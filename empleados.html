@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/funciones.js" defer></script>
+</head>
+<body>
+    
+    <header>
+        <h1>Distribuidora de Gas El Volcán</h1>
+        <nav>
+            <a href="#catalogo.html">Catalogo</a>
+            <a href="#contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="registro-empleado">
+        <h2>Registrar empleados</h2>
+        <form action="form-registro" novalidate>
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" required>
+
+            <label for="rut">Rut</label>
+            <input type="text" id="rut" required>
+
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" required>
+
+            <label for="correo">Correo</label>
+            <input type="email" id="correo" required>
+
+            <label for="cargo">Cargo</label>
+            <select id="cargo" required>
+            <option value="">Seleccione una opción</option>
+            <option value="repartidor">Repartidor</option>
+            <option value="operadora">Operadora</option>
+            <option value="administradora">Administradora</option>
+            </select>
+
+            <label for="estado">Estado</label>
+            <select  id="estado">
+                <option value="">Seleccione una opción</option>
+                <option >Activo</option>
+                <option >Inactivo</option>
+            </select>
+
+            <button type="submit">Enviar Registro</button>
+            <p id="mensaje-confirmacion"></p>
+        </form>
+        </section>
+
+        <section id="listado-empleado">
+        <article>
+            <h3>Empleados registrados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Cargo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Juan Gonzalez</td>
+                            <td>12.550.089-9</td>
+                            <td>903239087</td>
+                            <td>ju.gonza@gmail.com</td>
+                            <td>Repartidor</td>
+                            <td>Activo</td>
+                            <td>
+                                <button type="button">Editar</button>
+                                <button type="button">Eliminar</button>
+                                <button type="button">Cambiar estado</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ana Mallorca</td>
+                            <td>12.550.677-0</td>
+                            <td>903232312</td>
+                            <td>an.mall@gmail.com</td>
+                            <td>Administradora</td>
+                            <td>Activo</td>
+                            <td>
+                                <button type="button">Editar</button>
+                                <button type="button">Eliminar</button>
+                                <button type="button">Cambiar estado</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rodrigo Gonzalez</td>
+                            <td>14.666.089-8</td>
+                            <td>906389812</td>
+                            <td>rod.gonza@gmail.com</td>
+                            <td>Repartidor</td>
+                            <td>Inactivo</td>
+                            <td>
+                                <button type="button">Editar</button>
+                                <button type="button">Eliminar</button>
+                                <button type="button">Cambiar estado</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </article>    
+        </section>
+    </main>
+
+</body>
+</html>
