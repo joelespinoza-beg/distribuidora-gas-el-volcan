@@ -99,6 +99,20 @@ if (accion === "cambiar-estado") {
         dialogo.showModal();
     }
 
+    if (accion === "actualizar-stock") {
+        const fila = boton.closest("tr");
+        const dialogo = document.getElementById("dialogo-stock");
+        const cantidad = fila.querySelector(".cantidad-stock");
+
+        if (!dialogo) {
+            return;
+        }
+
+        dialogo.dataset.fila = Array.from(fila.parentElement.children).indexOf(fila);
+        document.getElementById("actualizar-cantidad").value = cantidad.textContent.trim();
+        dialogo.showModal();
+    }
+
 });
 
 const formularioEdicion = document.getElementById("form-edicion");
@@ -124,6 +138,44 @@ if (formularioEdicion && dialogoEdicion) {
 if (cancelarEdicion && dialogoEdicion) {
     cancelarEdicion.addEventListener("click", function () {
         dialogoEdicion.close();
+    });
+}
+
+const formularioStock = document.getElementById("form-stock");
+const dialogoStock = document.getElementById("dialogo-stock");
+const cancelarStock = document.getElementById("cancelar-stock");
+
+if (formularioStock && dialogoStock) {
+    formularioStock.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const filas = document.querySelectorAll("main tbody tr");
+        const fila = filas[dialogoStock.dataset.fila];
+        const nuevaCantidad = Number(document.getElementById("actualizar-cantidad").value);
+
+        if (fila && Number.isInteger(nuevaCantidad) && nuevaCantidad >= 0) {
+            const stockActual = fila.querySelector(".cantidad-stock");
+            const stockMinimo = Number(fila.cells[8].textContent);
+            const estado = fila.cells[9];
+
+            stockActual.textContent = nuevaCantidad;
+
+            if (nuevaCantidad === 0) {
+                estado.textContent = "Agotado";
+            } else if (nuevaCantidad <= stockMinimo) {
+                estado.textContent = "Stock bajo";
+            } else {
+                estado.textContent = "Disponible";
+            }
+
+            dialogoStock.close();
+        }
+    });
+}
+
+if (cancelarStock && dialogoStock) {
+    cancelarStock.addEventListener("click", function () {
+        dialogoStock.close();
     });
 }
 
