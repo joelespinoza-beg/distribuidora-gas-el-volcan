@@ -1,0 +1,243 @@
+:root {
+    --rojo: #b5121b;
+    --rojo-oscuro: #8f0e15;
+    --negro: #171717;
+    --gris: #f3f3f3;
+    --borde: #d6d6d6;
+    --blanco: #ffffff;
+}
+
+.sistema-interno {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--blanco);
+    color: var(--negro);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.sistema-interno *,
+.sistema-interno *::before,
+.sistema-interno *::after {
+    box-sizing: border-box;
+}
+
+.sistema-interno header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 18px 5%;
+    background: var(--negro);
+    color: var(--blanco);
+}
+
+.sistema-interno header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.sistema-interno nav {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.sistema-interno nav a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.sistema-interno nav a:hover,
+.sistema-interno nav a:focus-visible {
+    color: #ffb3b7;
+}
+
+.sistema-interno main {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+.sistema-interno section {
+    margin-bottom: 32px;
+}
+
+.sistema-interno h2 {
+    margin: 0 0 18px;
+    color: var(--rojo);
+}
+
+.sistema-interno form {
+    width: min(100%, 520px);
+    padding: 24px;
+    border: 1px solid var(--borde);
+    border-top: 4px solid var(--rojo);
+    background: var(--blanco);
+}
+
+.sistema-interno label {
+    display: block;
+    margin: 14px 0 6px;
+    font-weight: 700;
+}
+
+.sistema-interno label:first-of-type {
+    margin-top: 0;
+}
+
+.sistema-interno input,
+.sistema-interno select {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 10px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    background: var(--blanco);
+    color: var(--negro);
+    font: inherit;
+}
+
+.sistema-interno input:focus,
+.sistema-interno select:focus {
+    outline: 3px solid #f2a3a7;
+    border-color: var(--rojo);
+}
+
+.sistema-interno button {
+    margin: 16px 8px 0 0;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--rojo);
+    color: var(--blanco);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.sistema-interno button:hover,
+.sistema-interno button:focus-visible {
+    background: var(--rojo-oscuro);
+}
+
+.sistema-interno table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--blanco);
+    font-size: 0.95rem;
+}
+
+.sistema-interno th,
+.sistema-interno td {
+    padding: 12px;
+    border: 1px solid var(--borde);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.sistema-interno th {
+    background: var(--negro);
+    color: var(--blanco);
+    white-space: nowrap;
+}
+
+.sistema-interno tbody tr:nth-child(even) {
+    background: var(--gris);
+}
+
+.sistema-interno tbody tr:hover {
+    background: #ffecee;
+}
+
+.sistema-interno td button {
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+.sistema-interno dialog {
+    width: min(92%, 460px);
+    padding: 0;
+    border: 0;
+    border-top: 4px solid var(--rojo);
+    color: var(--negro);
+}
+
+.sistema-interno dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.sistema-interno dialog form {
+    width: 100%;
+    border: 0;
+}
+
+.sistema-interno footer {
+    padding: 24px 5%;
+    background: var(--negro);
+    color: var(--blanco);
+    text-align: center;
+}
+
+.sistema-interno footer p {
+    margin: 4px 0;
+}
+
+.sistema-interno #mensaje-confirmacion,
+.sistema-interno #mensaje-edicion,
+.sistema-interno #mensaje-login-cliente,
+.sistema-interno #mensaje-login-empleado {
+    min-height: 1.5em;
+    margin: 12px 0 0;
+    color: var(--rojo-oscuro);
+    font-weight: 700;
+}
+
+.sistema-interno .menu-principal {
+    display: none;
+    width: 100%;
+}
+
+.sistema-interno #boton-menu {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .sistema-interno header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .sistema-interno nav {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .sistema-interno table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .sistema-interno form {
+        padding: 18px;
+    }
+
+    .sistema-interno #boton-menu {
+        display: block;
+    }
+
+    .sistema-interno .menu-principal {
+    display: none;
+    width: 100%;
+    }
+
+    .sistema-interno .menu-principal.menu-visible {
+        display: flex;
+    }
+
+}
+

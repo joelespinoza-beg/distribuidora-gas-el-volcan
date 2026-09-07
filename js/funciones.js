@@ -1,4 +1,5 @@
 const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const formatoTelefono = /^(\+56\s?9\s?\d{4}\s?\d{4}|9\d{8})$/;
 
 function validarCredenciales(correo, contrasena, mensaje) {
     if (correo === "" || contrasena === "") {
@@ -69,16 +70,26 @@ if (formularioRegistro){
         const cargo = document.getElementById("cargo").value;
         const estado = document.getElementById("estado").value;
         const mensaje = document.getElementById("mensaje-confirmacion");
+        const formatoRut = /^\d{1,2}\.?\d{3}\.?\d{3}-[\dkK]$/;
+
+
 
         if ( nombre === "" || rut === "" || telefono === "" || correo === "" || cargo === "" || estado === ""
         ){
             mensaje.textContent = "Completa todo los campos.";
             return;
-        }
-        if (!formatoCorreo.test(correo)){
-            mensaje.textContent = "Ingresa un correo válido.";
+        }   if (!formatoRut.test(rut)) {
+            mensaje.textContent = "Ingresa un RUT válido, por ejemplo 12.345.678-9.";
+            return;
+        }  
+            if (!formatoTelefono.test(telefono)) {
+            mensaje.textContent = "Ingresa un teléfono válido, por ej 903239032";
             return;
         }
+           if (!formatoCorreo.test(correo)){
+            mensaje.textContent = "Ingresa un correo válido, , por ejemplo nombre@dominio.com.";
+            return;
+        } 
 
         const tablaEmpleado = document.querySelector("#listado-empleado tbody");
 
@@ -204,8 +215,23 @@ if (formularioEdicion && dialogoEdicion) {
         const fila = document.querySelectorAll("#listado-empleado tbody tr")[dialogoEdicion.dataset.fila];
         const telefono = document.getElementById("editar-telefono").value.trim();
         const correo = document.getElementById("editar-correo").value.trim();
+        const mensaje = document.getElementById("mensaje-edicion");
+        if (telefono === "" || correo === "") {
+            mensaje.textContent = "Completa todos los campos.";
+            return;
+        }
 
-        if (fila && telefono !== "" && correo !== "") {
+        if (!formatoCorreo.test(correo)) {
+            mensaje.textContent = "Ingresa un correo válido.";
+            return;
+        }
+
+        if (!formatoTelefono.test(telefono)) {
+            mensaje.textContent = "Ingresa un teléfono válido.";
+            return;
+        }
+
+        if (fila) {
             fila.cells[2].textContent = telefono;
             fila.cells[3].textContent = correo;
             dialogoEdicion.close();
@@ -257,4 +283,12 @@ if (cancelarStock && dialogoStock) {
     });
 }
 
+const botonMenu = document.getElementById("boton-menu");
+const menuPrincipal = document.querySelector(".menu-principal");
+
+if (botonMenu && menuPrincipal) {
+    botonMenu.addEventListener("click", function () {
+        menuPrincipal.classList.toggle("menu-visible");
+    });
+}
 
