@@ -196,8 +196,8 @@
 }
 
 .sistema-interno .menu-principal {
-    display: none;
-    width: 100%;
+    display: flex;
+    width: auto;
 }
 
 .sistema-interno #boton-menu {
@@ -238,6 +238,7 @@
     .sistema-interno .menu-principal.menu-visible {
         display: flex;
     }
+
 
 }
 
