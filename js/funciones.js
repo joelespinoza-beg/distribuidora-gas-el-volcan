@@ -1,38 +1,116 @@
-const formularioLogin = document.getElementById("form-login");
+const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-if (formularioLogin){
-formularioLogin.addEventListener("submit", function (evento){
-    evento.preventDefault();
-    
-    
-
-    const correo = document.getElementById("correo").value.trim();
-    const contrasena = document.getElementById("contrasena").value.trim();
-    const rol = document.getElementById("rol").value;
-    const mensaje = document.getElementById("mensaje-login");
-    
-    if (correo === "" || contrasena === "" || rol === "" ){
+function validarCredenciales(correo, contrasena, mensaje) {
+    if (correo === "" || contrasena === "") {
         mensaje.textContent = "Completa todos los campos.";
-        return;
+        return false;
     }
 
-    const formatoCorreo =  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (!formatoCorreo.test(correo)){
-        mensaje.textContent = "Ingrese un correo válido, por ejemplo nombre@dominio.com";
-        return;
-    }
- 
-    if (rol === "administrador"){
-        window.location.href =  "empleados.html";
-    } else if (rol === "operadora") {
-        window.location.href = "pedidos.html";
-    } else if (rol === "repartidor"){
-        window.location.href = "entregas.html";
-    } else {
-        mensaje.textContent = "Selecciona un rol válido.";
+    if (!formatoCorreo.test(correo)) {
+        mensaje.textContent = "Ingresa un correo válido, por ejemplo nombre@dominio.com.";
+        return false;
     }
 
-});
+    return true;
+}
+
+const formularioLoginCliente = document.getElementById("form-login-cliente");
+
+if (formularioLoginCliente) {
+    formularioLoginCliente.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const correo = document.getElementById("correo-cliente").value.trim();
+        const contrasena = document.getElementById("contrasena-cliente").value.trim();
+        const mensaje = document.getElementById("mensaje-login-cliente");
+
+        if (validarCredenciales(correo, contrasena, mensaje)) {
+            window.location.href = "catalogo.html";
+        }
+    });
+}
+
+const formularioLoginEmpleado = document.getElementById("form-login-empleado");
+
+if (formularioLoginEmpleado) {
+    formularioLoginEmpleado.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const correo = document.getElementById("correo-empleado").value.trim();
+        const contrasena = document.getElementById("contrasena-empleado").value.trim();
+        const mensaje = document.getElementById("mensaje-login-empleado");
+
+        if (!validarCredenciales(correo, contrasena, mensaje)) {
+            return;
+        }
+
+        if (correo === "admin@gasvolcan.cl") {
+            window.location.href = "empleados.html";
+        } else if (correo === "operadora@gasvolcan.cl") {
+            window.location.href = "pedidos.html";
+        } else if (correo === "repartidor@gasvolcan.cl") {
+            window.location.href = "entregas.html";
+        } else {
+            mensaje.textContent = "El correo no corresponde a un empleado registrado.";
+        }
+    });
+}
+
+const formularioRegistro = document.getElementById("form-registro");
+
+if (formularioRegistro){
+    formularioRegistro.addEventListener("submit", function (evento){
+        evento.preventDefault();
+
+        const nombre = document.getElementById("nombre").value.trim();
+        const rut = document.getElementById("rut").value.trim();
+        const telefono = document.getElementById("telefono").value.trim();
+        const correo = document.getElementById("correo").value.trim();
+        const cargo = document.getElementById("cargo").value;
+        const estado = document.getElementById("estado").value;
+        const mensaje = document.getElementById("mensaje-confirmacion");
+
+        if ( nombre === "" || rut === "" || telefono === "" || correo === "" || cargo === "" || estado === ""
+        ){
+            mensaje.textContent = "Completa todo los campos.";
+            return;
+        }
+        if (!formatoCorreo.test(correo)){
+            mensaje.textContent = "Ingresa un correo válido.";
+            return;
+        }
+
+        const tablaEmpleado = document.querySelector("#listado-empleado tbody");
+
+        const cargoTexto = document.getElementById("cargo").options[
+            document.getElementById("cargo").selectedIndex
+        ].textContent;
+
+        const estadoTexto = document.getElementById("estado").options[
+            document.getElementById("estado").selectedIndex
+        ].textContent;
+
+        const nuevaFila = document.createElement("tr");
+
+        nuevaFila.innerHTML = `
+            <td>${nombre}</td>
+            <td>${rut}</td>
+            <td>${telefono}</td>
+            <td>${correo}</td>
+            <td>${cargoTexto}</td>
+            <td class="estado-empleado">${estadoTexto}</td>
+            <td>
+                <button type="button" data-accion="editar">Editar</button>
+                <button type="button" data-accion="cambiar-estado">Cambiar estado</button>
+            </td>
+            `;
+
+            tablaEmpleado.appendChild(nuevaFila);
+            mensaje.textContent = "Empleado registrado correctamente.";
+            formularioRegistro.reset();
+    }) 
+
+    
 }
 
 document.addEventListener("click", function (evento) {
