@@ -292,3 +292,107 @@ if (botonMenu && menuPrincipal) {
     });
 }
 
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item) => {
+    const respuesta = item.querySelector("p");
+    const titulo = item.querySelector("h3");
+
+    if (respuesta && titulo) {
+        respuesta.style.display = "none"; // Ocultar respuesta por defecto
+        
+        // Crear el círculo con la flecha
+        const icono = document.createElement("span");
+        icono.className = "faq-icon";
+        icono.innerHTML = "&#10095;"; // Flecha estilo '>'
+        titulo.appendChild(icono);
+
+        titulo.addEventListener("click", function () {
+            const estaVisible = respuesta.style.display === "block";
+            
+            respuesta.style.display = estaVisible ? "none" : "block";
+            icono.classList.toggle("activo", !estaVisible);
+        });
+    }
+});
+const trackingForm = document.querySelector(".tracking form");
+
+if (trackingForm) {
+    trackingForm.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        const input = trackingForm.querySelector("input");
+        const valor = input ? input.value.trim() : "";
+
+        if (!valor) {
+            alert("Por favor, ingresa un número de pedido o teléfono válido.");
+            return;
+        }
+
+        let contenedorMensaje = document.getElementById("mensaje-seguimiento");
+        if (!contenedorMensaje) {
+            contenedorMensaje = document.createElement("div");
+            contenedorMensaje.id = "mensaje-seguimiento";
+            contenedorMensaje.style.marginTop = "15px";
+            contenedorMensaje.style.padding = "12px";
+            contenedorMensaje.style.borderRadius = "4px";
+            contenedorMensaje.style.fontWeight = "bold";
+            trackingForm.appendChild(contenedorMensaje);
+        }
+
+        contenedorMensaje.style.background = "#e6fffa";
+        contenedorMensaje.style.color = "#234e52";
+        contenedorMensaje.style.border = "1px solid #b2f5ea";
+        contenedorMensaje.innerHTML = `
+            🚚 <strong>Estado para "${valor}":</strong> En camino.<br>
+            <small>El camión está a unos 15 minutos de tu domicilio en Chillán.</small>
+        `;
+
+        mostrarMapaSeguimiento();
+    });
+}
+
+function mostrarMapaSeguimiento() {
+    let mapaContenedor = document.getElementById("mapa-tracking");
+
+    if (!mapaContenedor) {
+        const seccionTracking = document.querySelector(".tracking");
+        if (!seccionTracking) return;
+
+        mapaContenedor = document.createElement("div");
+        mapaContenedor.id = "mapa-tracking";
+        mapaContenedor.style.height = "300px";
+        mapaContenedor.style.marginTop = "20px";
+        mapaContenedor.style.borderRadius = "8px";
+        seccionTracking.appendChild(mapaContenedor);
+
+        // Inyectar CSS de Leaflet si no existe
+        if (!document.getElementById("leaflet-css")) {
+            const linkCSS = document.createElement("link");
+            linkCSS.id = "leaflet-css";
+            linkCSS.rel = "stylesheet";
+            linkCSS.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+            document.head.appendChild(linkCSS);
+        }
+
+        // Inyectar librería de Leaflet e inicializar mapa en Chillán
+        const scriptMap = document.createElement("script");
+        scriptMap.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        scriptMap.onload = function () {
+            // Coordenadas fijas de Chillán (-36.6066, -72.1034)
+            const mapa = L.map("mapa-tracking").setView([-36.6066, -72.1034], 14);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "© OpenStreetMap contributors"
+            }).addTo(mapa);
+
+            // Marcador del hogar y del repartidor
+            L.marker([-36.6066, -72.1034]).addTo(mapa)
+                .bindPopup("Tu Dirección (Chillán)")
+                .openPopup();
+
+            L.marker([-36.6150, -72.0950]).addTo(mapa)
+                .bindPopup("Camión Repartidor en Ruta 🚛");
+        };
+        document.body.appendChild(scriptMap);
+    }
+}

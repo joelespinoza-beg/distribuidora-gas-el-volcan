@@ -239,7 +239,6 @@
         display: flex;
     }
 
-    /* --- Variables y Estilos Generales --- */
     :root {
         --rojo: #b5121b;
         --rojo-oscuro: #8f0e15;
@@ -264,7 +263,6 @@
         box-sizing: border-box;
     }
 
-    /* --- Layout Principal --- */
     body.index header {
         display: flex;
         align-items: center;
@@ -313,7 +311,6 @@
         color: var(--rojo);
     }
 
-    /* --- Hero Section --- */
     body.index .hero {
         text-align: center;
         padding: 40px 0;
@@ -342,7 +339,6 @@
         flex-wrap: wrap;
     }
 
-    /* --- Botones --- */
     body.index .hero-actions a,
     body.index .btn-primary,
     body.index .btn-secondary,
@@ -397,7 +393,6 @@
         color: var(--negro);
     }
 
-    /* --- Formularios & Tracking --- */
     body.index form {
         width: min(100%, 520px);
         padding: 24px;
@@ -454,7 +449,6 @@
         margin: 0 auto;
     }
 
-    /* --- Tarjetas de Catálogo --- */
     body.index .preview-catalogo {
         margin-top: 32px;
     }
@@ -494,7 +488,6 @@
         margin: 12px 0;
     }
 
-    /* --- Secciones Adicionales (Benefits, Coverage, FAQ) --- */
     body.index .benefits {
         margin-top: 48px;
         padding: 40px 0;
@@ -545,7 +538,6 @@
         padding: 16px 0;
     }
 
-    /* --- Footer --- */
     body.index footer {
         margin-top: 64px;
         padding: 48px 5% 32px;
@@ -565,7 +557,6 @@
         text-decoration: none;
     }
 
-    /* --- Adaptaciones Móviles (Media Queries) --- */
     @media (max-width: 700px) {
         body.index header {
             align-items: flex-start;
