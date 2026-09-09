@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/funciones.js" defer></script>
+</head>
+<body class="sistema-interno">
+    <!-- menu de login para redirigir la pagina -->
+    <header>
+        <h1>Acceso al sistema</h1>
+        <button id="boton-menu" type="button" aria-label="Abrir menú">
+            ☰
+        </button>
+        <nav class="menu-principal">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Acceso de clientes</h2>
+            <form id="form-login-cliente" novalidate>
+                <label for="correo-cliente">Correo electrónico</label>
+                <input type="email" id="correo-cliente" name="correo" autocomplete="email" required>
+
+                <label for="contrasena-cliente">Contraseña</label>
+                <input type="password" id="contrasena-cliente" name="contrasena" autocomplete="current-password" required>
+
+                <button type="submit">Ingresar como cliente</button>
+                <p id="mensaje-login-cliente"></p>
+            </form>
+        </section>
+
+        <section>
+            <h2>Acceso del personal</h2>
+            <form id="form-login-empleado" novalidate>
+                <label for="correo-empleado">Correo electrónico</label>
+                <input type="email" id="correo-empleado" name="correo" autocomplete="email" required>
+
+                <label for="contrasena-empleado">Contraseña</label>
+                <input type="password" id="contrasena-empleado" name="contrasena" autocomplete="current-password" required>
+
+                <button type="submit">Ingresar como personal</button>
+                <p id="mensaje-login-empleado"></p>
+            </form>
+        </section>
+    </main>
+
+
+        <footer>
+        <div class="footer-info">
+            <p><strong>Distribuidora de Gas El Volcán</strong></p>
+            <p>Chillán, Región de Ñuble, Chile</p>
+            <p>Teléfono: (42) 222 3344 | WhatsApp: +56 9 8765 4321</p>
+            <p>Horarios: Lunes a Sábado 08:00 - 20:00 hrs | Domingos 09:00 - 15:00 hrs</p>
+            <p>© 2026 Distribuidora de Gas El Volcán. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

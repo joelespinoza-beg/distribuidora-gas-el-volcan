@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/funciones.js" defer></script>
+</head>
+<body class="sistema-interno">
+    
+    <header>
+        <h1>Distribuidora de Gas El Volcán</h1>
+        <button id="boton-menu" type="button" aria-label="Abrir menú">
+            ☰
+        </button>
+        <nav class="menu-principal">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catalogo</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="stock.html">Control de stock</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="registro-empleado">
+        <h2>Registrar empleado</h2>
+        <form id="form-registro" novalidate>
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="rut">Rut</label>
+            <input type="text" id="rut" name="rut" required>
+
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="correo">Correo</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="cargo">Cargo</label>
+            <select id="cargo" name="cargo" required>
+            <option value="">Seleccione una opción</option>
+            <option value="repartidor">Repartidor</option>
+            <option value="operadora">Operadora / Despachadora</option>
+            <option value="administrador">Administrador</option>
+            </select>
+
+            <label for="estado">Estado</label>
+            <select  id="estado" name="estado" required>
+                <option value="">Seleccione una opción</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+            </select>
+
+            <button type="submit">Enviar Registro</button>
+            <p id="mensaje-confirmacion"></p>
+        </form>
+        </section>
+
+        <section id="listado-empleado">
+        <article>
+            <h2>Empleados registrados</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Cargo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Juan Gonzalez</td>
+                            <td>12.550.089-9</td>
+                            <td>903239087</td>
+                            <td>ju.gonza@gmail.com</td>
+                            <td>Repartidor</td>
+                            <td class="estado-empleado">Activo</td>
+                            <td>
+                                <button type="button" data-accion="editar">Editar</button>
+                                <button type="button" data-accion="cambiar-estado">Cambiar estado</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ana Mallorca</td>
+                            <td>12.550.677-0</td>
+                            <td>903232312</td>
+                            <td>an.mall@gmail.com</td>
+                            <td>Administradora</td>
+                            <td class="estado-empleado">Activo</td>
+                            <td>
+                                <button type="button" data-accion="editar">Editar</button>
+                                <button type="button" data-accion="cambiar-estado">Cambiar estado</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rodrigo Gonzalez</td>
+                            <td>14.666.089-8</td>
+                            <td>906389812</td>
+                            <td>rod.gonza@gmail.com</td>
+                            <td>Repartidor</td>
+                            <td class="estado-empleado">Inactivo</td>
+                            <td>
+                                <button type="button" data-accion="editar">Editar</button>
+                                <button type="button" data-accion="cambiar-estado">Cambiar estado</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </article>    
+        </section>
+    </main>
+
+    <dialog id="dialogo-edicion">
+        <form id="form-edicion">
+            <h2>Editar empleado</h2>
+
+            <label for="editar-telefono">Teléfono</label>
+            <input type="tel" id="editar-telefono" required>
+
+            <label for="editar-correo">Correo</label>
+            <input type="email" id="editar-correo" required>
+
+            <p id="mensaje-edicion"></p>
+
+            <button type="submit">Guardar cambios</button>
+            <button type="button" id="cancelar-edicion">Cancelar</button>
+        </form>
+    </dialog>
+
+    <footer>
+        <div class="footer-info">
+            <p><strong>Distribuidora de Gas El Volcán</strong></p>
+            <p>Chillán, Región de Ñuble, Chile</p>
+            <p>Teléfono: (42) 222 3344 | WhatsApp: +56 9 8765 4321</p>
+            <p>Horarios: Lunes a Sábado 08:00 - 20:00 hrs | Domingos 09:00 - 15:00 hrs</p>
+            <p>© 2026 Distribuidora de Gas El Volcán. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - El Volcán</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/funciones.js" defer></script>
+</head>
+<body class="sistema-interno">
+    <header>
+        <h1>Contáctanos</h1>
+        <button id="boton-menu" type="button" aria-label="Abrir menú">☰</button>
+        <nav class="menu-principal">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Iniciar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Envíanos tu consulta</h2>
+            <form id="form-contacto" novalidate>
+                <div class="grupo-form">
+                    <label for="nombre-contacto">Nombre completo:</label>
+                    <input type="text" id="nombre-contacto">
+                    <span id="error-nombre" class="error-msg"></span>
+                </div>
+                <div class="grupo-form">
+                    <label for="correo-contacto">Correo Electrónico:</label>
+                    <input type="email" id="correo-contacto" placeholder="usuario@dominio.cl">
+                    <span id="error-correo" class="error-msg"></span>
+                </div>
+                <div class="grupo-form">
+                    <label for="telefono-contacto">Teléfono:</label>
+                    <input type="text" id="telefono-contacto" placeholder="+56912345678">
+                    <span id="error-telefono" class="error-msg"></span>
+                </div>
+                <div class="grupo-form">
+                    <label for="mensaje-contacto">Mensaje (Mínimo 20 caracteres):</label>
+                    <textarea id="mensaje-contacto" rows="4"></textarea>
+                    <span id="error-mensaje" class="error-msg"></span>
+                </div>
+                <button type="submit">Enviar Mensaje</button>
+                <p id="mensaje-exito-contacto"></p>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-info">
+            <p><strong>Distribuidora de Gas El Volcán</strong></p>
+            <p>Chillán, Región de Ñuble, Chile</p>
+            <p>Teléfono: (42) 222 3344 | WhatsApp: +56 9 8765 4321</p>
+            <p>Horarios: Lunes a Sábado 08:00 - 20:00 hrs | Domingos 09:00 - 15:00 hrs</p>
+            <p>© 2026 Distribuidora de Gas El Volcán. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
