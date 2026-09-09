@@ -400,3 +400,134 @@ function mostrarBarraEstado(pasoActivo) {
 
     seccionTracking.insertAdjacentHTML("beforeend", barraHTML);
 }
+const formularioContacto = document.getElementById("form-contacto");
+if (formularioContacto) {
+    formularioContacto.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        
+        const nombre = document.getElementById("nombre-contacto").value.trim();
+        const correo = document.getElementById("correo-contacto").value.trim();
+        const telefono = document.getElementById("telefono-contacto").value.trim();
+        const mensaje = document.getElementById("mensaje-contacto").value.trim();
+        
+        const errorNombre = document.getElementById("error-nombre");
+        const errorCorreo = document.getElementById("error-correo");
+        const errorTelefono = document.getElementById("error-telefono");
+        const errorMensaje = document.getElementById("error-mensaje");
+        const mensajeExito = document.getElementById("mensaje-exito-contacto");
+
+        const objNombre = document.getElementById("nombre-contacto");
+        const objCorreo = document.getElementById("correo-contacto");
+        const objTelefono = document.getElementById("telefono-contacto");
+        const objMensaje = document.getElementById("mensaje-contacto");
+        
+        if (errorNombre) errorNombre.textContent = "";
+        if (errorCorreo) errorCorreo.textContent = "";
+        if (errorTelefono) errorTelefono.textContent = "";
+        if (errorMensaje) errorMensaje.textContent = "";
+        if (mensajeExito) mensajeExito.textContent = "";
+
+        if (objNombre) objNombre.classList.remove('input-error');
+        if (objCorreo) objCorreo.classList.remove('input-error');
+        if (objTelefono) objTelefono.classList.remove('input-error');
+        if (objMensaje) objMensaje.classList.remove('input-error');
+
+        let esValido = true;
+        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const regexTelefono = /^(\+56\s?9\s?\d{4}\s?\d{4}|9\d{8})$/;
+
+        if (nombre === "") {
+            if (errorNombre) errorNombre.textContent = "El nombre es obligatorio.";
+            if (objNombre) objNombre.classList.add('input-error');
+            esValido = false;
+        }
+        if (!regexCorreo.test(correo)) {
+            if (errorCorreo) errorCorreo.textContent = "Ingresa un correo válido (ej: nombre@dominio.cl).";
+            if (objCorreo) objCorreo.classList.add('input-error');
+            esValido = false;
+        }
+        if (telefono !== "" && !regexTelefono.test(telefono)) {
+            if (errorTelefono) errorTelefono.textContent = "Ingresa un teléfono válido (ej: +56912345678).";
+            if (objTelefono) objTelefono.classList.add('input-error');
+            esValido = false;
+        }
+        if (mensaje.length < 20) {
+            if (errorMensaje) errorMensaje.textContent = "El mensaje debe tener al menos 20 caracteres.";
+            if (objMensaje) objMensaje.classList.add('input-error');
+            esValido = false;
+        }
+        if (esValido && mensajeExito) {
+            mensajeExito.textContent = "¡Mensaje enviado correctamente! La operadora te contactará pronto.";
+            mensajeExito.style.color = "green";
+            formularioContacto.reset();
+        }
+    });
+}
+
+const contenedorCatalogo = document.getElementById("contenedor-catalogo");
+if (contenedorCatalogo) {
+    const productosGas = [
+        { id: "CL001", nombre: "Cilindro GLP 5 kg", categoria: "Cilindros de Gas", precio: 6500, stock: 80, imagen: "img/CL001.jpg" },
+        { id: "CL002", nombre: "Cilindro GLP 11 kg", categoria: "Cilindros de Gas", precio: 12000, stock: 200, imagen: "img/CL002.jpg" },
+        { id: "CL003", nombre: "Cilindro GLP 15 kg", categoria: "Cilindros de Gas", precio: 16000, stock: 90, imagen: "img/CL003.jpg" },
+        { id: "CL004", nombre: "Cilindro GLP 45 kg", categoria: "Cilindros de Gas", precio: 45000, stock: 30, imagen: "img/CL004.jpg" },
+        { id: "RG001", nombre: "Regulador doméstico", categoria: "Reguladores", precio: 8990, stock: 45, imagen: "img/RG001.jpg" },
+        { id: "RG002", nombre: "Regulador alta presión", categoria: "Reguladores", precio: 18990, stock: 12, imagen: "img/RG002.jpg" },
+        { id: "RG003", nombre: "Regulador dual (2 salidas)", categoria: "Reguladores", precio: 14990, stock: 18, imagen: "img/RG003.jpg" },
+        { id: "MG001", nombre: "Manguera gas 1.5 m", categoria: "Conexiones", precio: 3990, stock: 80, imagen: "img/MG001.jpg" },
+        { id: "MG002", nombre: "Manguera gas 3 m", categoria: "Conexiones", precio: 6990, stock: 50, imagen: "img/MG002.jpg" },
+        { id: "MG003", nombre: "Abrazadera metálica", categoria: "Conexiones", precio: 990, stock: 200, imagen: "img/MG003.jpg" },
+        { id: "MG004", nombre: "Kit conexión completo", categoria: "Conexiones", precio: 12990, stock: 25, imagen: "img/MG004.jpg" },
+        { id: "AC001", nombre: "Carro porta cilindro", categoria: "Accesorios", precio: 12990, stock: 20, imagen: "img/AC001.jpg" },
+        { id: "AC002", nombre: "Tapa protectora válvula", categoria: "Accesorios", precio: 1490, stock: 60, imagen: "img/AC002.jpg" },
+        { id: "AC003", nombre: "Detector de gas", categoria: "Accesorios", precio: 19990, stock: 8, imagen: "img/AC003.jpg" }
+    ];
+
+    productosGas.forEach(producto => {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "tarjeta-producto";
+        tarjeta.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="img-producto" onerror="this.src='https://via.placeholder.com/200?text=Sin+Imagen'">
+            <h3>${producto.nombre}</h3>
+            <p style="color: #666; font-size: 0.9em; margin-bottom: 5px;">Categoría: ${producto.categoria}</p>
+            <p style="color: #666; font-size: 0.9em; margin-top: 0;">Stock disponible: <strong>${producto.stock} uds.</strong></p>
+            <p class="precio-gas">$${producto.precio.toLocaleString('es-CL')}</p>
+            <button class="btn-agregar" data-id="${producto.id}">Solicitar Pedido</button>
+            <span class="mensaje-agregado" id="msg-prod-${producto.id}" style="display:none; font-size:0.9em; margin-top:10px; line-height: 1.4;"></span>
+        `;
+        contenedorCatalogo.appendChild(tarjeta);
+    });
+
+    contenedorCatalogo.addEventListener("click", function (evento) {
+        if (evento.target.classList.contains("btn-agregar")) {
+            const idProducto = evento.target.getAttribute("data-id");
+            const boton = evento.target;
+            const mensajeAviso = document.getElementById(`msg-prod-${idProducto}`);
+            
+            if (mensajeAviso) {
+                boton.disabled = true;
+                boton.style.backgroundColor = "#aaaaaa";
+                boton.style.cursor = "not-allowed";
+                boton.textContent = "Procesando...";
+                
+                mensajeAviso.innerHTML = "⏳ <strong>Enviando a la operadora...</strong><br>Asignando repartidor.";
+                mensajeAviso.style.color = "#b5121b"; 
+                mensajeAviso.style.display = "block";
+                
+                setTimeout(() => {
+                    boton.textContent = "Pedido en curso";
+                    mensajeAviso.innerHTML = "✅ <strong>¡Repartidor asignado!</strong><br>Juan González está en camino.<br>Llegada aproximada: <strong>1 a 3 horas</strong> (Zona Centro)[cite: 3].";
+                    mensajeAviso.style.color = "green";
+                    
+                    setTimeout(() => {
+                        boton.disabled = false;
+                        boton.style.backgroundColor = ""; 
+                        boton.style.cursor = "pointer";
+                        boton.textContent = "Solicitar Pedido";
+                        mensajeAviso.style.display = "none";
+                    }, 8000);
+                }, 4000);
+            }
+        }
+    });
+}
