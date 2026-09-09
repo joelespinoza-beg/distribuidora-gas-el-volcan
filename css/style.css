@@ -238,6 +238,7 @@
     .sistema-interno .menu-principal.menu-visible {
         display: flex;
     }
+}
 
     :root {
         --rojo: #b5121b;
@@ -614,4 +615,3 @@
         transform: rotate(90deg);
         background-color: var(--negro, #171717);
     }
-}
