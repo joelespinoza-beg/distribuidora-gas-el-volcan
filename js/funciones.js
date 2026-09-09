@@ -299,12 +299,10 @@ faqItems.forEach((item) => {
     const titulo = item.querySelector("h3");
 
     if (respuesta && titulo) {
-        respuesta.style.display = "none"; // Ocultar respuesta por defecto
-        
-        // Crear el círculo con la flecha
+        respuesta.style.display = "none"; 
         const icono = document.createElement("span");
         icono.className = "faq-icon";
-        icono.innerHTML = "&#10095;"; // Flecha estilo '>'
+        icono.innerHTML = "&#10095;"; '
         titulo.appendChild(icono);
 
         titulo.addEventListener("click", function () {
@@ -321,12 +319,11 @@ if (trackingForm) {
     trackingForm.addEventListener("submit", function (evento) {
         evento.preventDefault();
         const input = trackingForm.querySelector("input");
-        const valor = input ? input.value.trim() : "";
+        const valorIngresado = input ? input.value.trim().toUpperCase() : "";
 
-        if (!valor) {
-            alert("Por favor, ingresa un número de pedido o teléfono válido.");
-            return;
-        }
+        const pedidoValido = "PED-0001";
+        const telefonoValido1 = "+56922224444";
+        const telefonoValido2 = "922224444";
 
         let contenedorMensaje = document.getElementById("mensaje-seguimiento");
         if (!contenedorMensaje) {
@@ -339,60 +336,67 @@ if (trackingForm) {
             trackingForm.appendChild(contenedorMensaje);
         }
 
-        contenedorMensaje.style.background = "#e6fffa";
-        contenedorMensaje.style.color = "#234e52";
-        contenedorMensaje.style.border = "1px solid #b2f5ea";
-        contenedorMensaje.innerHTML = `
-            🚚 <strong>Estado para "${valor}":</strong> En camino.<br>
-            <small>El camión está a unos 15 minutos de tu domicilio en Chillán.</small>
-        `;
+        const stepperPrevio = document.getElementById("tracking-status-bar");
+        if (stepperPrevio) {
+            stepperPrevio.remove();
+        }
 
-        mostrarMapaSeguimiento();
+        if (valorIngresado === pedidoValido) {
+            contenedorMensaje.style.background = "#e6fffa";
+            contenedorMensaje.style.color = "#234e52";
+            contenedorMensaje.style.border = "1px solid #b2f5ea";
+            contenedorMensaje.innerHTML = `
+                <strong>Pedido encontrado ("${input.value.trim()}"):</strong> Tu gas va en camino a tu domicilio en Chillán.
+            `;
+            mostrarBarraEstado(3); 
+        } else if (valorIngresado === telefonoValido1 || valorIngresado === telefonoValido2) {
+            contenedorMensaje.style.background = "#e6fffa";
+            contenedorMensaje.style.color = "#234e52";
+            contenedorMensaje.style.border = "1px solid #b2f5ea";
+            contenedorMensaje.innerHTML = `
+                <strong>Pedido encontrado ("${input.value.trim()}"):</strong> Tu pedido está listo en bodega y pronto saldrá a reparto.
+            `;
+            mostrarBarraEstado(2); 
+        } else {
+            contenedorMensaje.style.background = "#ffecee";
+            contenedorMensaje.style.color = "#b5121b";
+            contenedorMensaje.style.border = "1px solid #f2a3a7";
+            contenedorMensaje.innerHTML = `
+                <strong>Error:</strong> No encontramos un pedido asociado a ese número o teléfono.<br>
+            `;
+        }
     });
 }
 
-function mostrarMapaSeguimiento() {
-    let mapaContenedor = document.getElementById("mapa-tracking");
+function mostrarBarraEstado(pasoActivo) {
+    const seccionTracking = document.querySelector(".tracking");
+    if (!seccionTracking) return;
 
-    if (!mapaContenedor) {
-        const seccionTracking = document.querySelector(".tracking");
-        if (!seccionTracking) return;
+    const clasePaso1 = pasoActivo > 1 ? "completado" : (pasoActivo === 1 ? "activo" : "");
+    const clasePaso2 = pasoActivo > 2 ? "completado" : (pasoActivo === 2 ? "activo" : "");
+    const clasePaso3 = pasoActivo > 3 ? "completado" : (pasoActivo === 3 ? "activo" : "");
+    const clasePaso4 = pasoActivo === 4 ? "activo" : "";
 
-        mapaContenedor = document.createElement("div");
-        mapaContenedor.id = "mapa-tracking";
-        mapaContenedor.style.height = "300px";
-        mapaContenedor.style.marginTop = "20px";
-        mapaContenedor.style.borderRadius = "8px";
-        seccionTracking.appendChild(mapaContenedor);
+    const barraHTML = `
+        <div id="tracking-status-bar" class="tracking-stepper">
+            <div class="step ${clasePaso1}">
+                <div class="step-icon">1</div>
+                <div class="step-label">Confirmado</div>
+            </div>
+            <div class="step ${clasePaso2}">
+                <div class="step-icon">2</div>
+                <div class="step-label">En Bodega</div>
+            </div>
+            <div class="step ${clasePaso3}">
+                <div class="step-icon">3</div>
+                <div class="step-label">En Ruta</div>
+            </div>
+            <div class="step ${clasePaso4}">
+                <div class="step-icon">4</div>
+                <div class="step-label">Entregado</div>
+            </div>
+        </div>
+    `;
 
-        // Inyectar CSS de Leaflet si no existe
-        if (!document.getElementById("leaflet-css")) {
-            const linkCSS = document.createElement("link");
-            linkCSS.id = "leaflet-css";
-            linkCSS.rel = "stylesheet";
-            linkCSS.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-            document.head.appendChild(linkCSS);
-        }
-
-        // Inyectar librería de Leaflet e inicializar mapa en Chillán
-        const scriptMap = document.createElement("script");
-        scriptMap.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-        scriptMap.onload = function () {
-            // Coordenadas fijas de Chillán (-36.6066, -72.1034)
-            const mapa = L.map("mapa-tracking").setView([-36.6066, -72.1034], 14);
-
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: "© OpenStreetMap contributors"
-            }).addTo(mapa);
-
-            // Marcador del hogar y del repartidor
-            L.marker([-36.6066, -72.1034]).addTo(mapa)
-                .bindPopup("Tu Dirección (Chillán)")
-                .openPopup();
-
-            L.marker([-36.6150, -72.0950]).addTo(mapa)
-                .bindPopup("Camión Repartidor en Ruta 🚛");
-        };
-        document.body.appendChild(scriptMap);
-    }
+    seccionTracking.insertAdjacentHTML("beforeend", barraHTML);
 }
