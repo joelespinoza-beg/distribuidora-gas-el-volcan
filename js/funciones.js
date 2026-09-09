@@ -302,7 +302,7 @@ faqItems.forEach((item) => {
         respuesta.style.display = "none"; 
         const icono = document.createElement("span");
         icono.className = "faq-icon";
-        icono.innerHTML = "&#10095;"; '
+        icono.innerHTML = "&#10095;";
         titulo.appendChild(icono);
 
         titulo.addEventListener("click", function () {
