@@ -467,19 +467,19 @@ if (formularioContacto) {
 const contenedorCatalogo = document.getElementById("contenedor-catalogo");
 if (contenedorCatalogo) {
     const productosGas = [
-        { id: "CL001", nombre: "Cilindro GLP 5 kg", categoria: "Cilindros de Gas", precio: 6500, stock: 80, imagen: "img/CL001.jpg" },
-        { id: "CL002", nombre: "Cilindro GLP 11 kg", categoria: "Cilindros de Gas", precio: 12000, stock: 200, imagen: "img/CL002.jpg" },
-        { id: "CL003", nombre: "Cilindro GLP 15 kg", categoria: "Cilindros de Gas", precio: 16000, stock: 90, imagen: "img/CL003.jpg" },
-        { id: "CL004", nombre: "Cilindro GLP 45 kg", categoria: "Cilindros de Gas", precio: 45000, stock: 30, imagen: "img/CL004.jpg" },
-        { id: "RG001", nombre: "Regulador doméstico", categoria: "Reguladores", precio: 8990, stock: 45, imagen: "img/RG001.jpg" },
-        { id: "RG002", nombre: "Regulador alta presión", categoria: "Reguladores", precio: 18990, stock: 12, imagen: "img/RG002.jpg" },
-        { id: "RG003", nombre: "Regulador dual (2 salidas)", categoria: "Reguladores", precio: 14990, stock: 18, imagen: "img/RG003.jpg" },
-        { id: "MG001", nombre: "Manguera gas 1.5 m", categoria: "Conexiones", precio: 3990, stock: 80, imagen: "img/MG001.jpg" },
-        { id: "MG002", nombre: "Manguera gas 3 m", categoria: "Conexiones", precio: 6990, stock: 50, imagen: "img/MG002.jpg" },
-        { id: "MG003", nombre: "Abrazadera metálica", categoria: "Conexiones", precio: 990, stock: 200, imagen: "img/MG003.jpg" },
-        { id: "MG004", nombre: "Kit conexión completo", categoria: "Conexiones", precio: 12990, stock: 25, imagen: "img/MG004.jpg" },
-        { id: "AC001", nombre: "Carro porta cilindro", categoria: "Accesorios", precio: 12990, stock: 20, imagen: "img/AC001.jpg" },
-        { id: "AC002", nombre: "Tapa protectora válvula", categoria: "Accesorios", precio: 1490, stock: 60, imagen: "img/AC002.jpg" },
+        { id: "CL001", nombre: "Cilindro GLP 5 kg", categoria: "Cilindros de Gas", precio: 6500, stock: 80, imagen: "img/cilindro5.jpg" },
+        { id: "CL002", nombre: "Cilindro GLP 11 kg", categoria: "Cilindros de Gas", precio: 12000, stock: 200, imagen: "img/cilindro11.jpg" },
+        { id: "CL003", nombre: "Cilindro GLP 15 kg", categoria: "Cilindros de Gas", precio: 16000, stock: 90, imagen: "img/cilindro15.png" },
+        { id: "CL004", nombre: "Cilindro GLP 45 kg", categoria: "Cilindros de Gas", precio: 45000, stock: 30, imagen: "img/cilindro45.png" },
+        { id: "RG001", nombre: "Regulador doméstico", categoria: "Reguladores", precio: 8990, stock: 45, imagen: "img/reguladordomestico.jpg" },
+        { id: "RG002", nombre: "Regulador alta presión", categoria: "Reguladores", precio: 18990, stock: 12, imagen: "img/reguladoraltapresion.jpeg" },
+        { id: "RG003", nombre: "Regulador dual (2 salidas)", categoria: "Reguladores", precio: 14990, stock: 18, imagen: "img/reguladordual.jpg" },
+        { id: "MG001", nombre: "Manguera gas 1.5 m", categoria: "Conexiones", precio: 3990, stock: 80, imagen: "img/mangera1.5.jpg" },
+        { id: "MG002", nombre: "Manguera gas 3 m", categoria: "Conexiones", precio: 6990, stock: 50, imagen: "img/mangera3m.jpg" },
+        { id: "MG003", nombre: "Abrazadera metálica", categoria: "Conexiones", precio: 990, stock: 200, imagen: "img/abrazadera.jpg" },
+        { id: "MG004", nombre: "Kit conexión completo", categoria: "Conexiones", precio: 12990, stock: 25, imagen: "img/kitconexion.jpg" },
+        { id: "AC001", nombre: "Carro porta cilindro", categoria: "Accesorios", precio: 12990, stock: 20, imagen: "img/carrocilindro.jpg" },
+        { id: "AC002", nombre: "Tapa protectora válvula", categoria: "Accesorios", precio: 1490, stock: 60, imagen: "img/tapagas.jpg" },
         { id: "AC003", nombre: "Detector de gas", categoria: "Accesorios", precio: 19990, stock: 8, imagen: "img/AC003.jpg" }
     ];
 
